@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations: 
+    appgw.ingress.kubernetes.io/use-private-ip: "false"
+  name: test-ingress
+  namespace: bakar
+spec:
+  ingressClassName: azure/application-gateway
+  rules:
+    - host: test.address
+      http:
+        paths:
+          - path: /testpath
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: testsvc
+                port:
+                  number: 80
+
